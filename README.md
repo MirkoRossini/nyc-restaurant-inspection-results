@@ -1,9 +1,24 @@
 # docker-crow-svelte-hello-world
-An example project to deploy a Crow + Svelte application using Docker
+An example project to deploy a Crow + Svelte application using Docker Compose.
 
 
-WIP
+We define two Docker containers:
 
-docker run --rm --name=svelte-docker -p 5000:80 svelte-docker
-cd svelte-app
-docker build . -t svelte-docker
+  * A Svelte + nginx component
+  * A Crow application component
+
+
+The Svelte application is built using the static adapter.
+The generated files are then copied into a nginx container.
+
+The nginx container is also configured to proxy calls 
+to /app to the Crow app (see svelte-app/nginx.conf).
+
+The crow-app container downloads a Crow release, unpacks it
+and installs it in an ubuntu container. Another container
+is used to run the application.
+
+
+simply call docker-compose up to run the setup.
+
+

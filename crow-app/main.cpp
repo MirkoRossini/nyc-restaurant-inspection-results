@@ -6,7 +6,7 @@ int main()
     crow::SimpleApp app; //define your crow application
 
     //define your endpoint at the root directory
-    CROW_ROUTE(app, "/")([](){
+    CROW_ROUTE(app, "/app")([](){
         return "Hello world";
     });
 

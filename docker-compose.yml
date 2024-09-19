@@ -1,0 +1,14 @@
+
+services:
+  nginx:
+    build: ./svelte-app
+    ports:
+      - 1337:80
+    depends_on:
+      - app
+  app:
+    build: ./crow-app
+    ports:
+      - 18080:18080
+        #env_file:
+        #- ./.env.dev
