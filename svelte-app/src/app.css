@@ -1,0 +1,16 @@
+.map {
+    height: 90vh;
+}
+
+
+.results {
+        
+    height: 90vh;
+    overflow: auto;
+}
+
+@media (min-width: 768px) {
+    #mapresult {
+        grid-template-columns: minmax(0%,2fr) minmax(0%, 1fr)
+    }
+}

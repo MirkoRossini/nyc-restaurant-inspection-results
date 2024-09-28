@@ -1,11 +1,14 @@
-<script>
+<script lang="ts">
 	export const prerender = true;
+	import '../app.css';
 	import { onMount } from 'svelte';
 	let promise;
-	onMount(async () => {
-		const res = await fetch('http://localhost:1337/app');
-		promise = await res.text();
-	});
+	//onMount(async () => {
+	//	const res = await fetch('http://localhost:1337/app');
+	//	promise = await res.text();
+	//});
+	import Leaflet from '$lib/Leaflet.svelte';
+	const initialView: LatLngExpression = [51.514244, 7.468429]; // Dortmund, Germany
 </script>
 
 <main class="container">
@@ -14,7 +17,7 @@
 	<details>
 		<summary>Accordion 2</summary>
 		<form>
-			<fieldset  class="grid">
+			<fieldset class="grid">
 				<label>
 					First name
 					<input name="first_name" placeholder="First name" autocomplete="given-name" />
@@ -28,32 +31,37 @@
 			<input type="submit" value="Subscribe" />
 		</form>
 	</details>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-        <article>I’m a card!</article>
-
+	<div class="grid" id="mapresult">
+		<Leaflet view={initialView} zoom={14}></Leaflet>
+		<div class="results overflow-auto">
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+			<article>I’m a card!</article>
+		</div>
+	</div>
+	<!-- 
 	{#await promise}
 		<p>...waiting</p>
 	{:then ret}
 		<p>Response from the server was: {ret}</p>
 	{:catch error}
 		<p style="color: red">{error.message}</p>
-	{/await}
+	{/await} -->
 
 	...
 </main>
