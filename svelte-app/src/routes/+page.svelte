@@ -9,6 +9,10 @@
 	//});
 	import Leaflet from '$lib/Leaflet.svelte';
 	const initialView: LatLngExpression = [51.514244, 7.468429]; // Dortmund, Germany
+
+	import testpages from '../test_violation_pages.json';
+	import { writable } from 'svelte/store';
+	const current_page = writable(testpages.page1);
 </script>
 
 <main class="container">
@@ -34,24 +38,9 @@
 	<div class="grid" id="mapresult">
 		<Leaflet view={initialView} zoom={14}></Leaflet>
 		<div class="results overflow-auto">
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
-			<article>I’m a card!</article>
+			{#each $current_page as result}
+				<article>{result.DBA}</article>
+			{/each}
 		</div>
 	</div>
 	<!-- 
