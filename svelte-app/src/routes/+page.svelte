@@ -8,11 +8,15 @@
 	//	promise = await res.text();
 	//});
 	import Leaflet from '$lib/Leaflet.svelte';
+	import Marker from '$lib/Marker.svelte';
 	const initialView: LatLngExpression = [51.514244, 7.468429]; // Dortmund, Germany
 
 	import testpages from '../test_violation_pages.json';
 	import { writable } from 'svelte/store';
 	const current_page = writable(testpages.page1);
+	const toLatLng = (result: {'Latitude': number, 'Longitude': number}) => {
+		return [result.Latitude, result.Longitude]
+	};
 </script>
 
 <main class="container">
@@ -36,7 +40,11 @@
 		</form>
 	</details>
 	<div class="grid" id="mapresult">
-		<Leaflet view={initialView} zoom={14}></Leaflet>
+		<Leaflet view={initialView} zoom={14}>
+			{#each $current_page as result}
+				<Marker latLng={[result.Latitude, result.Longitude]} width={40} height={40}></Marker>
+			{/each}
+		</Leaflet>
 		<div class="results overflow-auto">
 			{#each $current_page as result}
 				<article>{result.DBA}</article>

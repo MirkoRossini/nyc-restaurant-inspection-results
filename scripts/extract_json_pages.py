@@ -10,6 +10,8 @@ def json_pages(path: str, page_size: int, number_of_pages: int):
     for row in csv.DictReader(gzip.open(path, 'rt')):
         if row["INSPECTION DATE"] == "01/01/1900":
             continue
+        row["Latitude"] = float(row["Latitude"])
+        row["Longitude"] = float(row["Longitude"])
         page.append(row)
         if len(page) == page_size:
             result[f"page{done_pages}"] = page
