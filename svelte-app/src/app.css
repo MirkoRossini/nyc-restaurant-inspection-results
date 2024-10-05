@@ -6,11 +6,27 @@
 .results {
         
     height: 90vh;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 @media (min-width: 768px) {
     #mapresult {
         grid-template-columns: minmax(0%,2fr) minmax(0%, 1fr)
     }
+}
+
+.marker {
+    border-radius: 50%;
+    display: block;
+    background-color: blue;
+    width: 10px;
+    height: 10px;
+
+}
+
+.map-marker {
+    background: none;
+    border:none;
+    padding:0px;
+    border-radius: 50%;
 }

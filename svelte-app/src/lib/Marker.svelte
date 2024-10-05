@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div bind:this={markerElement}>
+<div bind:this={markerElement} class="marker">
 	{#if marker}
 		<slot />
 	{/if}
