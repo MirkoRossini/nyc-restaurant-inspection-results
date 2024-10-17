@@ -40,7 +40,7 @@
 	<div class="grid" id="mapresult">
 		<Leaflet view={initialView} zoom={13}>
 			{#each $current_page as result}
-				<Marker latLng={[result.Latitude, result.Longitude]} width={10} height={10}>
+				<Marker latLng={[result.Latitude, result.Longitude]} grade={result.GRADE} width={10} height={10}>
 					<Popup>{result.DBA}</Popup>
 				</Marker>
 			{/each}

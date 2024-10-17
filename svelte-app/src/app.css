@@ -18,10 +18,32 @@
 .marker {
     border-radius: 50%;
     display: block;
-    background-color: blue;
     width: 10px;
     height: 10px;
+    background-color: purple;
 
+}
+
+.grade_A {
+    background-color: blue;
+}
+.grade_B {
+    background-color: green;
+}
+.grade_C {
+    background-color: orange;
+}
+.grade_N {
+    background-color: gray;
+}
+.grade_Z {
+    background-color: gray;
+}
+.grade_P {
+    background-color: gray;
+}
+.grade_ {
+    background-color: gray;
 }
 
 .map-marker {

@@ -5,6 +5,7 @@
 	export let width: number;
 	export let height: number;
 	export let latLng: L.LatLngExpression;
+	export let grade: string;
 
 	let marker: L.Marker | undefined;
 	let markerElement: HTMLElement;
@@ -34,7 +35,7 @@
 	});
 </script>
 
-<div bind:this={markerElement} class="marker">
+<div bind:this={markerElement} class="marker grade_{grade}">
 	{#if marker}
 		<slot />
 	{/if}

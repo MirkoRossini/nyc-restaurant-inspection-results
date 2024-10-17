@@ -1,2 +1,5 @@
 svelte-app/build
 svelte-app/node-modules
+crow-app/data/*
+svelte-app/src/descriptions.json
+svelte-app/src/test_violation_histories.json
