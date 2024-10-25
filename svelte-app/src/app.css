@@ -52,3 +52,9 @@
     padding:0px;
     border-radius: 50%;
 }
+
+
+.popup-restaurant-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+}

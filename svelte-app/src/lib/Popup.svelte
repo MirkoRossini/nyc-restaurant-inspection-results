@@ -11,7 +11,7 @@
 	const layer = getLayer();
 
 	onMount(() => {
-		popup = L.popup().setContent(popupElement);
+		popup = L.popup({maxHeight: 76, minWidth: 200, autoPan: true}).setContent(popupElement);
 
 		if (layer) {
 			layer.bindPopup(popup);
