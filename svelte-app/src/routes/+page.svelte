@@ -5,6 +5,13 @@
 	import testpages from '../test_violation_pages.json';
 	import testViolationHistories from '../test_violation_histories.json';
 	import descriptions from '../descriptions.json';
+	let isFiltersOpen = false;
+
+	function toggleFiltersCallback(open: boolean) {
+		isFiltersOpen = open;
+		console.log("toggle", isFiltersOpen, open);
+	}
+	
 	function formatTimestampToAmericanDate(timestamp: number): string {
 		const date = new Date(timestamp * 1000); // Convert to milliseconds
 		const month = date.getMonth() + 1; // Months are 0-based
@@ -13,6 +20,19 @@
 
 		return `${month}/${day}/${year}`;
 	}
+	function handleSubmit(event) {
+		event.preventDefault(); // Prevent page refresh
+		const formData = new FormData(event.target);
+		let values = new Map<string, string[]>();
+		formData.forEach((value, key) => {
+			if (!values.get(key)) {
+				values.set(key, []);
+			}
+			values.get(key)!.push(value);
+		});
+		console.log(formData, values);
+		toggleFiltersCallback(false);
+  	}
 	let promise;
 	//onMount(async () => {
 	//	const res = await fetch('http://localhost:1337/app');
@@ -54,23 +74,42 @@
 </script>
 
 <main class="container">
-	<h1>Welcome to SvelteKit</h1>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-	<details>
-		<summary>Accordion 2</summary>
-		<form>
+	<h1>NYC Inspection results</h1>
+	<details bind:open={isFiltersOpen}
+	 on:toggle={e =>  toggleFiltersCallback(e.target.open) }>
+		<summary>Filters</summary>
+		<form on:submit={handleSubmit}>
 			<fieldset class="grid">
 				<label>
-					First name
-					<input name="first_name" placeholder="First name" autocomplete="given-name" />
+					Name
+					<input name="restaurant_name" placeholder="Restaurant name" />
 				</label>
+			</fieldset>
+			<fieldset class="grid">
+				<legend>NYC Restaurant Grades</legend>
+
 				<label>
-					Email
-					<input type="email" name="email" placeholder="Email" autocomplete="email" />
+					<input type="checkbox" name="grade" value="A" checked>
+					A
+				</label>
+
+				<label>
+					<input type="checkbox" name="grade" value="B" checked>
+					B
+				</label>
+
+				<label>
+					<input type="checkbox" name="grade" value="C" checked>
+					C
+				</label>
+
+				<label>
+					<input type="checkbox" name="grade" value="N">
+					Not Graded
 				</label>
 			</fieldset>
 
-			<input type="submit" value="Subscribe" />
+			<input type="submit" value="Update filters" />
 		</form>
 	</details>
 	<div class="grid" id="mapresult">
